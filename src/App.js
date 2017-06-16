@@ -33,6 +33,21 @@ CrazyButton.propTypes ={
   onClick: PropTypes.func.isRequired,
   nClick: PropTypes.number.isRequired
 }
+function RateTable(props){
+  const rates = props.rates
+  console.log(rates);
+  return(
+    <table>
+      { Object.keys(rates).map((k)=>(
+        <tr>
+          <td>{k}</td>
+          <td>{props.rates[k]}</td>
+        </tr>
+      ))}
+
+    </table>
+  )
+}
 class CurrencyConverter extends Component{
   render(){
     const amount = this.props.amount
@@ -56,6 +71,7 @@ class CurrencyConverter extends Component{
             value={amount}
             onChange={(e) => this.props.onAmountChange(e.target.value)}
           /> */}
+          <RateTable rates={rate}/>
           <p>THB: {amount*rate.THB}</p>
           <p>EURO: {amount*rate.EUR}</p>
         </div>
